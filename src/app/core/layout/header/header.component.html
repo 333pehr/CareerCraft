@@ -1,7 +1,43 @@
-<header>
-    <div>
-        <a routerLink="">
-            <img src="/shared/assets/horizontal-logo.svg" alt="SVG Logo" />
+<header class="header">
+    <div class="logo-wrapper">
+        <a routerLink="/">
+            <img src="/shared/assets/horizontal-logo.svg" alt="SVG Logo" width="100%" height="100%" />
         </a>
     </div>
+    <div class="navs">
+        <ul>
+            <li>
+                <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" >Home</a>
+            </li>
+            <li>
+                <a routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">About</a>
+            </li>
+        </ul>
+    </div>
+    <div class="header-actions">
+        <div>
+            <mat-button-toggle-group name="themeSelector" aria-label="Theme Toggle">
+                <mat-button-toggle value="light_mode">
+                    <mat-icon>light_mode</mat-icon>
+                </mat-button-toggle>
+                <mat-button-toggle value="dark_mode">
+                    <mat-icon>dark_mode</mat-icon>
+                </mat-button-toggle>
+            </mat-button-toggle-group>          
+        </div>
+        <div>
+            <button mat-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>language</mat-icon> {{ selectedLanguage }}
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="onLanguageChanged('ENG')" >
+                  <span>ENG</span>
+                </button>
+                <button mat-menu-item (click)="onLanguageChanged('TR')" >
+                  <span>TR</span>
+                </button>
+              </mat-menu>
+        </div>
+    </div>
+    
 </header>
