@@ -16,7 +16,7 @@
     </div>
     <div class="header-actions">
         <div>
-            <mat-button-toggle-group name="themeSelector" aria-label="Theme Toggle">
+            <mat-button-toggle-group name="themeSelector" aria-label="Theme Toggle" hideSingleSelectionIndicator="true">
                 <mat-button-toggle value="light_mode">
                     <mat-icon>light_mode</mat-icon>
                 </mat-button-toggle>
@@ -27,15 +27,17 @@
         </div>
         <div>
             <button mat-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-                <mat-icon>language</mat-icon> {{ selectedLanguage }}
+                <mat-icon>language</mat-icon> {{ selectedLanguage.title }}
               </button>
               <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)="onLanguageChanged('ENG')" >
-                  <span>ENG</span>
-                </button>
-                <button mat-menu-item (click)="onLanguageChanged('TR')" >
-                  <span>TR</span>
-                </button>
+                @for (lang of languages; track $index) {
+                    <button mat-menu-item (click)="onLanguageChanged(lang)" >
+                      <span>{{lang.title}}</span>
+                        <mat-icon>
+                            {{lang.id === selectedLanguage.id ? 'done' : ''}} 
+                        </mat-icon>
+                    </button>
+                }
               </mat-menu>
         </div>
     </div>
