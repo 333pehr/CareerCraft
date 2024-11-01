@@ -1,7 +1,45 @@
-<header>
-    <div>
-        <a routerLink="">
-            <img src="/shared/assets/horizontal-logo.svg" alt="SVG Logo" />
+<header class="header">
+    <div class="logo-wrapper">
+        <a routerLink="/">
+            <img src="/shared/assets/horizontal-logo.svg" alt="SVG Logo" width="100%" height="100%" />
         </a>
     </div>
+    <div class="navs">
+        <ul>
+            <li>
+                <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" >{{'NAVIGATIONS.HOME' | translate}}</a>
+            </li>
+            <li>
+                <a routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{'NAVIGATIONS.ABOUT' | translate}}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="header-actions">
+        <div>
+            <mat-button-toggle-group name="themeSelector" aria-label="Theme Toggle" hideSingleSelectionIndicator="true">
+                <mat-button-toggle value="light_mode">
+                    <mat-icon>light_mode</mat-icon>
+                </mat-button-toggle>
+                <mat-button-toggle value="dark_mode">
+                    <mat-icon>dark_mode</mat-icon>
+                </mat-button-toggle>
+            </mat-button-toggle-group>          
+        </div>
+        <div>
+            <button mat-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>language</mat-icon> {{ selectedLanguage.title }}
+              </button>
+              <mat-menu #menu="matMenu">
+                @for (lang of languages; track $index) {
+                    <button mat-menu-item (click)="onLanguageChanged(lang)" >
+                      <span>{{lang.title}}</span>
+                        <mat-icon>
+                            {{lang.id === selectedLanguage.id ? 'done' : ''}} 
+                        </mat-icon>
+                    </button>
+                }
+              </mat-menu>
+        </div>
+    </div>
+    
 </header>

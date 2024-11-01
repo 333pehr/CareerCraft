@@ -1,0 +1,43 @@
+.header{
+    display: flex;
+    padding: 5px 25px;
+    justify-content: space-between;
+
+    .logo-wrapper{
+        display: flex;
+        width: 150px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .navs{
+        margin-right: auto;
+        ul{
+            display: flex;
+            list-style: none;
+            align-items: center;
+            column-gap: 20px;
+
+            li{
+                a{
+                    text-decoration: none;
+                    color: #000;
+                    font-weight: 500;
+                    font-size: 16px;
+                    transition: all 0.3s ease;
+                    &:hover{
+                        color: rgb(29, 173, 125);
+                    }
+                }
+                .active{
+                    color: rgb(29, 173, 125);
+                }
+            }
+        }
+    }
+    .header-actions{
+        align-items: center;
+        column-gap: 10px;
+        display: flex;
+    }
+}
