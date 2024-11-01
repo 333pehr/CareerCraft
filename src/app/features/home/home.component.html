@@ -1,3 +1,22 @@
-<h1 class="text-xl font-bold underline">
-    Hello world!
-</h1>
+<div class="flex justify-center dark:bg-slate-800">
+<div class="container flex flex-col items-center justify-center ">
+    <div class="logo-wrapper">
+        <img src="/shared/assets/vertical-logo.svg" alt="SVG Logo" width="100%" height="100%" [ngStyle]="{ 'filter': svgColorFilter }" />
+    </div>
+    <div>
+        <h1 class="text-3xl font-semibold text-center text-primary dark:text-white">
+            {{ 'HEADERS.INTRO' | translate }}
+        </h1>
+        <p class="text-center text-gray-500 dark:text-gray-400 mt-2">
+            <span class="font-semibold text-primary" >CareerCraft</span>{{ 'HEADERS.SUB_INTRO' | translate }}
+        </p>
+    </div>
+    <div class="start-buttons flex gap-4">
+        <button mat-flat-button color="#2ea394" >{{'BUTTONS.CREATE_NEW_CV' | translate}}</button>
+        <button mat-button>{{'BUTTONS.UPDATE_EXISTING_CV' | translate}}</button>
+    </div>
+    <div class="content">
+        <app-content-card></app-content-card>
+    </div>
+</div>
+</div>

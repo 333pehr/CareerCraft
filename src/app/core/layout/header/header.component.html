@@ -1,44 +1,48 @@
-<header class="header dark:bg-slate-800">
-    <div class="logo-wrapper">
-        <a routerLink="/">
-            <img src="/shared/assets/horizontal-logo.svg" alt="SVG Logo" width="100%" height="100%" [ngStyle]="{ 'filter': svgColorFilter }" />
-        </a>
-    </div>
-    <div class="navigation-routes">
-        <ul>
-            <li>
-                <a routerLink="/" routerLinkActive="active" class="dark:text-white" [routerLinkActiveOptions]="{ exact: true }" >{{'NAVIGATIONS.HOME' | translate}}</a>
-            </li>
-            <li>
-                <a routerLink="/about" routerLinkActive="active" class="dark:text-white" [routerLinkActiveOptions]="{ exact: true }">{{'NAVIGATIONS.ABOUT' | translate}}</a>
-            </li>
-        </ul>
-    </div>
-    <div class="header-actions">
-        <div>
-            <mat-button-toggle-group name="themeSelector" aria-label="Theme Toggle" hideSingleSelectionIndicator="true" (change)="onThemeChanged($event)" >
-                <mat-button-toggle value="light">
-                    <mat-icon class="dark:text-white">light_mode</mat-icon>
-                </mat-button-toggle>
-                <mat-button-toggle value="dark">
-                    <mat-icon>dark_mode</mat-icon>
-                </mat-button-toggle>
-            </mat-button-toggle-group>          
+<div class="flex justify-center dark:bg-slate-800" >
+<header class="header-wrapper flex container ">
+    <div class="flex justify-between w-full">
+        <div class="logo-wrapper">
+            <a routerLink="/">
+                <img src="/shared/assets/horizontal-logo.svg" alt="SVG Logo" width="100%" height="100%" [ngStyle]="{ 'filter': svgColorFilter }" />
+            </a>
         </div>
-        <div>
-            <button mat-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-                <mat-icon class="text-slate-800 dark:text-white">language</mat-icon> <span class="text-slate-800 dark:text-white" >{{ selectedLanguage.title }}</span>
-            </button>
-            <mat-menu #menu="matMenu">
-              @for (lang of languages; track $index) {
-                  <button mat-menu-item (click)="onLanguageChanged(lang)" class="dark:bg-slate-900" >
-                    <mat-icon class="text-slate-800 dark:text-white">
-                        {{lang.id === selectedLanguage.id ? 'done' : ''}} 
-                    </mat-icon>
-                    <span class="dark:text-white">{{lang.title}}</span>
-                  </button>
-              }
-            </mat-menu>
+        <div class="navigation-routes">
+            <ul>
+                <li>
+                    <a routerLink="/" routerLinkActive="active" class="dark:text-white" [routerLinkActiveOptions]="{ exact: true }" >{{'NAVIGATIONS.HOME' | translate}}</a>
+                </li>
+                <li>
+                    <a routerLink="/about" routerLinkActive="active" class="dark:text-white" [routerLinkActiveOptions]="{ exact: true }">{{'NAVIGATIONS.ABOUT' | translate}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="header-actions">
+            <div>
+                <mat-button-toggle-group name="themeSelector" aria-label="Theme Toggle" hideSingleSelectionIndicator="true" (change)="onThemeChanged($event)" >
+                    <mat-button-toggle value="light">
+                        <mat-icon class="dark:text-white">light_mode</mat-icon>
+                    </mat-button-toggle>
+                    <mat-button-toggle value="dark">
+                        <mat-icon>dark_mode</mat-icon>
+                    </mat-button-toggle>
+                </mat-button-toggle-group>          
+            </div>
+            <div>
+                <button mat-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon class="text-slate-800 dark:text-white">language</mat-icon> <span class="text-slate-800 dark:text-white" >{{ selectedLanguage.title }}</span>
+                </button>
+                <mat-menu #menu="matMenu">
+                  @for (lang of languages; track $index) {
+                      <button mat-menu-item (click)="onLanguageChanged(lang)" class="dark:bg-slate-900" >
+                        <mat-icon class="text-slate-800 dark:text-white">
+                            {{lang.id === selectedLanguage.id ? 'done' : ''}} 
+                        </mat-icon>
+                        <span class="dark:text-white">{{lang.title}}</span>
+                      </button>
+                  }
+                </mat-menu>
+            </div>
         </div>
     </div>
 </header>
+</div>

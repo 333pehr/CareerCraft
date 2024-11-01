@@ -1,6 +1,7 @@
 
 @use '@angular/material' as mat;
 @import './app/core/constants/materials.scss';
+@import './app/core/constants/theme.scss';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -20,7 +21,7 @@ $CareerCraft-theme: mat.define-theme((
   ),
   density: (
     scale: 0,
-  ),
+  )
 ));
 
 // Include theme styles for core and each component used in your app.
@@ -39,5 +40,9 @@ $CareerCraft-theme: mat.define-theme((
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: $background-color;
+}
 
