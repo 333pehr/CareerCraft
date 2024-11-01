@@ -1,0 +1,12 @@
+/*
+    Setting of the global styles for the Angular Material components
+    E.g. setting theme colors of the components in the dark mode
+*/
+
+.dark .mat-mdc-menu-panel{
+    background-color: #0f172a !important;
+
+    .mat-mdc-menu-item .mat-icon-no-color, .mat-mdc-menu-item .mat-mdc-menu-submenu-icon{
+        color: #fff !important;
+    }
+}

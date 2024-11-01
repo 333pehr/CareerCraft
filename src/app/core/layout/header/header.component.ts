@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, Host, HostBinding, inject, ViewChild, ViewEncapsulation } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatIconModule} from '@angular/material/icon';
@@ -6,19 +6,30 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button'; 
 import { TranslationLoaderService } from '@app/shared/services/translation-loader.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { FormControl } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { ThemeService } from '@app/shared/services/theme.service';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterModule, MatButtonToggleModule, MatIconModule, MatMenuModule, MatButtonModule, TranslateModule],
+  imports: [RouterModule, MatButtonToggleModule, MatIconModule, MatMenuModule, MatButtonModule, TranslateModule, CommonModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrl: './header.component.scss',
+  encapsulation: ViewEncapsulation.None
 })
 export class HeaderComponent {
+
+  //get the host element by id "headerWrapper"
+  @ViewChild('headerWrapper') headerWrapper: any;
 
   selectedLanguage: any;
   languages: any;
 
+  svgColorFilter = 'invert(55%) sepia(45%) saturate(586%) hue-rotate(123deg) brightness(90%) contrast(89%)';
+
   translationLoader = inject(TranslationLoaderService);
+
+  themeSerivce = inject(ThemeService);
 
   constructor() {
     this.languages = [
@@ -47,6 +58,19 @@ export class HeaderComponent {
     this.selectedLanguage = language;
     this.translationLoader.use(language.id);
     localStorage.setItem('locale', language.id);
+  }
+
+  onThemeChanged(e: any): void {
+    const theme = e.value == 'dark' ? 'dark' : 'light';
+    localStorage.setItem('theme', theme);
+
+    this.headerWrapper.nativeElement.classList.remove('dark', 'light');
+    this.headerWrapper.nativeElement.classList.add(theme);
+    if (theme === 'dark') {
+      this.themeSerivce.enableDarkMode();
+    } else {
+      this.themeSerivce.disableDarkMode();
+    }
   }
 }
 
