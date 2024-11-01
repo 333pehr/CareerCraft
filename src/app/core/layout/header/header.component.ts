@@ -19,12 +19,10 @@ import { ThemeService } from '@app/shared/services/theme.service';
 })
 export class HeaderComponent {
 
-  //get the host element by id "headerWrapper"
-  @ViewChild('headerWrapper') headerWrapper: any;
-
   selectedLanguage: any;
   languages: any;
 
+  // Color filter for the LOGO
   svgColorFilter = 'invert(55%) sepia(45%) saturate(586%) hue-rotate(123deg) brightness(90%) contrast(89%)';
 
   translationLoader = inject(TranslationLoaderService);
@@ -60,12 +58,14 @@ export class HeaderComponent {
     localStorage.setItem('locale', language.id);
   }
 
+  /**
+   * Set the theme of the application and change the theme data
+   * @param e on theme changed event
+   */
   onThemeChanged(e: any): void {
-    const theme = e.value == 'dark' ? 'dark' : 'light';
+    const theme = e.value;
     localStorage.setItem('theme', theme);
 
-    this.headerWrapper.nativeElement.classList.remove('dark', 'light');
-    this.headerWrapper.nativeElement.classList.add(theme);
     if (theme === 'dark') {
       this.themeSerivce.enableDarkMode();
     } else {
