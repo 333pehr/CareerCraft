@@ -10,8 +10,10 @@
         align-items: center;
     }
 
-    .navs{
+    .navigation-routes{
         margin-right: auto;
+        display: flex;
+        padding-left: 40px;
         ul{
             display: flex;
             list-style: none;
@@ -21,16 +23,15 @@
             li{
                 a{
                     text-decoration: none;
-                    color: #000;
                     font-weight: 500;
                     font-size: 16px;
                     transition: all 0.3s ease;
                     &:hover{
-                        color: rgb(29, 173, 125);
+                        color: #2ea394;
                     }
                 }
                 .active{
-                    color: rgb(29, 173, 125);
+                    color: #2ea394;
                 }
             }
         }
@@ -39,5 +40,11 @@
         align-items: center;
         column-gap: 10px;
         display: flex;
+    }
+    //get the last child of the header-actions
+    .header-actions > *:last-child{
+        mat-menu .mat-mdc-menu-panel{
+            background-color: black !important;
+        }
     }
 }
