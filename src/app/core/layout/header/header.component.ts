@@ -21,15 +21,14 @@ export class HeaderComponent {
 
   selectedLanguage: any;
   languages: any;
+  selectedTheme: string;
 
   // Color filter for the LOGO
   svgColorFilter = 'invert(55%) sepia(45%) saturate(586%) hue-rotate(123deg) brightness(90%) contrast(89%)';
 
   translationLoader = inject(TranslationLoaderService);
 
-  themeSerivce = inject(ThemeService);
-
-  constructor() {
+  constructor(private themeService: ThemeService) {
     this.languages = [
       {
           id: 'en',
@@ -46,6 +45,8 @@ export class HeaderComponent {
     const selectedLanguageKey = localStorage.getItem('locale') ?? 'en';
 
     this.selectedLanguage = this.languages.find((e: any) => e.id === selectedLanguageKey);
+
+    this.selectedTheme = themeService.getTheme;
   }
 
   /**
@@ -67,9 +68,9 @@ export class HeaderComponent {
     localStorage.setItem('theme', theme);
 
     if (theme === 'dark') {
-      this.themeSerivce.enableDarkMode();
+      this.themeService.enableDarkMode();
     } else {
-      this.themeSerivce.disableDarkMode();
+      this.themeService.disableDarkMode();
     }
   }
 }

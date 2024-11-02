@@ -18,7 +18,7 @@
         </div>
         <div class="header-actions">
             <div>
-                <mat-button-toggle-group name="themeSelector" aria-label="Theme Toggle" hideSingleSelectionIndicator="true" (change)="onThemeChanged($event)" >
+                <mat-button-toggle-group name="themeSelector" [value]="selectedTheme" aria-label="Theme Toggle" hideSingleSelectionIndicator="true" (change)="onThemeChanged($event)">
                     <mat-button-toggle value="light">
                         <mat-icon class="dark:text-white">light_mode</mat-icon>
                     </mat-button-toggle>
@@ -28,7 +28,7 @@
                 </mat-button-toggle-group>          
             </div>
             <div>
-                <button mat-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <button mat-button [matMenuTriggerFor]="menu" aria-label="language-selector">
                     <mat-icon class="text-slate-800 dark:text-white">language</mat-icon> <span class="text-slate-800 dark:text-white" >{{ selectedLanguage.title }}</span>
                 </button>
                 <mat-menu #menu="matMenu">

@@ -6,10 +6,12 @@ import { TranslationLoaderService } from './shared/services/translation-loader.s
 import { locale as english } from './shared/i18n/en';
 import { locale as turkish } from './shared/i18n/tr';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { ThemeService } from './shared/services/theme.service';
 
-function appInitial(translationLoader: TranslationLoaderService) {
+function appInitial(translationLoader: TranslationLoaderService, themeService: ThemeService) {
   translationLoader.loadTranslations(english, turkish);
   translationLoader.setDefaultLang(localStorage.getItem('locale') ?? 'en');
+  localStorage.getItem('theme') === 'dark' ? themeService.enableDarkMode() : themeService.disableDarkMode();
   return () => {};
 }
 
@@ -22,7 +24,7 @@ export const appConfig: ApplicationConfig = {
       provide: APP_INITIALIZER,
       useFactory: appInitial,
       multi: true,
-      deps: [TranslationLoaderService],
+      deps: [TranslationLoaderService, ThemeService],
     },
     TranslateService,
     ...(TranslateModule.forRoot() as any).providers,

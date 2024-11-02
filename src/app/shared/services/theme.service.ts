@@ -11,6 +11,10 @@ export class ThemeService {
     this.renderer = rendererFactory.createRenderer(null, null);
   }
 
+  public get getTheme() {
+    return localStorage.getItem('theme') ?? 'light';
+  }
+
   enableDarkMode() {
     this.renderer.addClass(document.body, 'dark');
   }
