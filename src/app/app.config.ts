@@ -9,9 +9,12 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ThemeService } from './shared/services/theme.service';
 
 function appInitial(translationLoader: TranslationLoaderService, themeService: ThemeService) {
+  // Load translations and set default language
   translationLoader.loadTranslations(english, turkish);
   translationLoader.setDefaultLang(localStorage.getItem('locale') ?? 'en');
-  localStorage.getItem('theme') === 'dark' ? themeService.enableDarkMode() : themeService.disableDarkMode();
+
+  // Check the theme of the application
+  localStorage.getItem('theme') === 'dark' ? themeService.enableDarkMode() : themeService.checkSystemTheme();
   return () => {};
 }
 
