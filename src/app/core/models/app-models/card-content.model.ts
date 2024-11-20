@@ -1,6 +1,6 @@
-interface CardContent {
+export interface CardContent {
     title: string;
     description: string;
-    imageUrl?: string;
+    imageUrl?: string | null;
     imagePosition: 'left' | 'right';
 }

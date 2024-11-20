@@ -18,7 +18,10 @@
         </button>
     </div>
     <div class="content">
-        <app-content-card></app-content-card>
+        @for (content of cardContents; track $index) {
+            <app-content-card [content]="content"></app-content-card>
+        }
+        
     </div>
 </div>
 </div>
